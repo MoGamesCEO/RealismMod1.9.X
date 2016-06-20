@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class ContainerCrate extends Container{
 
@@ -22,7 +23,7 @@ public class ContainerCrate extends Container{
 		}
 		//Player inventory slot 9-35 9-35
 		
-		for(int y = 0; y < 9; ++y){
+		for(int y = 0; y < 3; ++y){
 			for( int x = 0;x < 9;++x){
 				this.addSlotToContainer(new Slot(playerinv, x + y * 9, 8 + x * 18 , 84 + y * 18));
 			}
@@ -30,7 +31,7 @@ public class ContainerCrate extends Container{
 		
 		//Player inventory slot 0-8 ids 36-44
 		for(int x = 0;x < 9;++x)
-			this.addSlotToContainer(new Slot(playerinv, x, 8+x*18,142));
+			this.addSlotToContainer(new Slot(playerinv, x, 8 + x * 18 ,  142));
 	}
 	
 	@Override
@@ -39,6 +40,31 @@ public class ContainerCrate extends Container{
 	}
 	
 	@Override
-	public ItemStack
-
+	public ItemStack transferStackInSlot(EntityPlayer player,int fromSlot){
+		ItemStack previous = null;
+		Slot slot = (Slot)this.inventorySlots.get(fromSlot);
+		
+		if(slot != null && slot.getHasStack()){
+			ItemStack current = slot.getStack();
+			previous = current.copy();	
+			
+			if(fromSlot < 18){
+				if(!this.mergeItemStack(current, 18, 45, true))
+					return null;
+			}else{
+				if(!this.mergeItemStack(current, 0, 18, false))
+					return null;
+			}
+			
+		if(current.stackSize == 0)
+			slot.putStack((ItemStack)null);
+		else
+		slot.onSlotChanged();
+		
+		if(current.stackSize == previous.stackSize)
+			return null;
+		slot.onPickupFromSlot(player, current);
+		}
+		return previous;
+	}
 }

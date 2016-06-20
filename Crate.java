@@ -4,7 +4,9 @@ import com.realism.mod.RMGlobal;
 import com.realism.mod.GUI.CrateGUIHandler;
 import com.realism.mod.init.TileEntity.TileEntityCrate;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,7 +18,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class Crate extends BlockContainer {
+public class Crate extends Block implements ITileEntityProvider {
 
 	public Crate(Material materialIn) {
 		super(materialIn);
