@@ -175,7 +175,7 @@ public class TileEntityCrate extends TileEntity  implements IInventory{
 		public void readFromNBT(NBTTagCompound nbt){
 			super.readFromNBT(nbt);
 			
-			NBTTagList list = nbt.getTagList("Items", 10);
+			NBTTagList list = nbt.getTagList("items", 10);
 			for(int i = 0; i < list.tagCount(); ++i){
 				NBTTagCompound stackTag = list.getCompoundTagAt(i);
 				int slot = stackTag.getByte("Slot") & 255;
