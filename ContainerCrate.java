@@ -16,7 +16,7 @@ public class ContainerCrate extends Container{
 		this.te = te;
 		
 		//Tile Entity, Slot 0-17 0-8
-		for(int y = 0; y < 3; ++y){
+		for(int y = 0; y < 2; ++y){
 			for(int x = 0; x < 9;++x){
 				this.addSlotToContainer(new Slot(te, x + y * 9, 62 + x * 18, 17 + y * 18));
 			}

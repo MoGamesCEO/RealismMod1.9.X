@@ -19,8 +19,8 @@ public class GUICrate extends GuiContainer{
 		this.playInv = playerInv;
 		this.te = te;
 		
-		this.xSize = 176;
-		this.ySize = 166;
+		this.xSize = 190;
+		this.ySize = 160 ;
 	}
 
 	@Override
